@@ -1,12 +1,10 @@
 package Models;
 
-import Models.Pessoa;
-
 import java.util.Date;
 
 public class Diretor  extends Pessoa {
 
-    public Diretor(String nome, Date dataNascimento){
-        super(nome, dataNascimento);
+    public Diretor(Long id, String nome, Date dataNascimento){
+        super(id, nome, dataNascimento);
     }
 }

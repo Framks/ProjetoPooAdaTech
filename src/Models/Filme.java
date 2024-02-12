@@ -3,19 +3,27 @@ package Models;
 import java.util.ArrayList;
 
 public class Filme {
+    private Long id;
     private Integer clasificacao;
     private String nome;
     private ArrayList<Ator> atores;
     private ArrayList<Diretor> diretores;
     private String Descricao;
     private Integer anoLancamento;
-    private ArrayList<String> genero;
+    // private ArrayList<String> genero; futuramente eu implemento o genero
     private Integer duracao;
 
     public Filme(){
         this.atores= new ArrayList<Ator>();
         this.diretores = new ArrayList<Diretor>();
-        this.genero = new ArrayList<String>();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getDuracao() {
