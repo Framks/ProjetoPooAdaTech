@@ -3,14 +3,13 @@ package Models;
 import java.util.Date;
 
 public class Pessoa {
-    private Long id;
     private String nome;
     private Date dataNascimento;
+    private Long id;
 
     public Pessoa(Long id, String nome, Date dataNascimento){
         this.dataNascimento = dataNascimento;
         this.nome = nome;
-        this.id = id;
     }
 
     public Date getDataNascimento() {
