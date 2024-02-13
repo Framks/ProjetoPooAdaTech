@@ -16,21 +16,37 @@ public class AtorDb {
         return atores;
     }
 
-    public void addAtor(Ator ator){
+    public boolean addAtor(Ator ator){
+        if(this.contains(ator))
+            return false;
         this.atores.add(ator);
+        return true;
     }
 
     public Ator findById(Long id){
         for(Ator ator: this.atores){
-            if (ator.getId()== id){
+            if (ator.getId().equals(id)){
                 return ator;
             }
         }
         return null;
     }
 
-    public void removeAtor(Long id){
+    public boolean removeAtor(Long id){
         Ator remove = findById(id);
-        this.atores.remove(remove);
+        if(remove != null){
+            this.atores.remove(remove);
+            return true;
+        }
+        return false;
     }
+
+    private boolean contains(Ator ator){
+        for (Ator a: this.atores){
+            if (a.equals(ator))
+                return true;
+        }
+        return false;
+    }
+
 }

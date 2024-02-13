@@ -1,5 +1,8 @@
 package Menu;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Menu {
@@ -32,8 +35,10 @@ public class Menu {
         System.out.println("### Filme ###");
         System.out.println("1 - ver filmes");
         System.out.println("2 - buscar por nome");
-        System.out.println("3 - cadastrar filme");
-        System.out.println("4 - exit");
+        System.out.println("3 - Adicionar Ator à filme");
+        System.out.println("4 - Adicionar Diretor à filme");
+        System.out.println("5 - cadastrar filme");
+        System.out.println("6 - exit");
     }
 
     public Integer receberInteiro(Scanner scan){
@@ -50,5 +55,21 @@ public class Menu {
         }
         return result;
     }
-    // na hora de vincular um ator ou diretor a um filme nós podemos passar por parametro o filme e la fazer finculação
+
+    public Date receberData(Scanner scan){
+        System.out.print("Digite o dia: ");
+        Integer dia = receberInteiro(scan);
+        System.out.print("Digite o mes: ");
+        Integer mes = receberInteiro(scan);
+        System.out.print("Digite o ano: ");
+        Integer ano = receberInteiro(scan);
+        String data = dia+"/"+mes+"/"+ano;
+        SimpleDateFormat formatData = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return formatData.parse(data);
+        } catch (ParseException e) {
+            System.out.println("error ao formatar data");
+            return null;
+        }
+    }
 }
