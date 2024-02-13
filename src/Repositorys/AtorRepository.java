@@ -13,11 +13,11 @@ public class AtorRepository {
     }
 
     public boolean create(Ator ator){
-        return this.atorDb.addAtor(ator);
+        return this.atorDb.add(ator);
     }
 
     public boolean delete(Long id){
-        return this.atorDb.removeAtor(id);
+        return this.atorDb.remove(id);
     }
 
     public Ator findById(Long id){
@@ -25,6 +25,6 @@ public class AtorRepository {
     }
 
     public List<Ator> findAll(){
-        return this.atorDb.getAtores();
+        return this.atorDb.findAll();
     }
 }

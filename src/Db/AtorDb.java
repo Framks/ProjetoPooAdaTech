@@ -12,11 +12,11 @@ public class AtorDb {
         this.atores = new ArrayList<>();
     }
 
-    public List<Ator> getAtores() {
+    public List<Ator> findAll() {
         return atores;
     }
 
-    public boolean addAtor(Ator ator){
+    public boolean add(Ator ator){
         if(this.contains(ator))
             return false;
         this.atores.add(ator);
@@ -32,7 +32,7 @@ public class AtorDb {
         return null;
     }
 
-    public boolean removeAtor(Long id){
+    public boolean remove(Long id){
         Ator remove = findById(id);
         if(remove != null){
             this.atores.remove(remove);
