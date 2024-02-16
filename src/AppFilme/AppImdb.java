@@ -1,55 +1,49 @@
 package AppFilme;
 
 import Menu.Menu;
+import controllers.AtorController;
+import controllers.DiretorController;
+import controllers.FilmeController;
 
 import java.util.Scanner;
 
 public class AppImdb {
 
     private Menu menu;
-    private Scanner scan;;
+    private Scanner scan;
+    private FilmeController filmeController;
+    private DiretorController diretorController;
+    private AtorController atorController;
     public AppImdb(){
         this.menu = new Menu();
         this.scan = new Scanner(System.in);
+        this.filmeController = new FilmeController();
+        this.atorController = new AtorController();
+        this.diretorController = new DiretorController();
     }
 
     public void run(){
-        Boolean rodarMenu = true;
-        while (rodarMenu){
+        Integer opcao = 0;
+        do{
             this.menu.printMenuPrincipal();
             System.out.print("Digite a opção: ");
-            Integer opcao = this.receberInteiro(this.scan);
+            opcao = this.menu.receberInteiro(this.scan);
             switch (opcao){
                 case 1:
-
+                    this.atorController.run(scan);
                     break;
                 case 2:
-
+                    this.diretorController.run(scan);
                     break;
                 case 3:
-
+                    this.filmeController.run(scan);
                     break;
                 case 4:
-                    rodarMenu = false;
+                    scan.close();
                     break;
                 default:
                     break;
             }
-        }
-    }
-
-    public Integer receberInteiro(Scanner scan){
-        Integer result = 0;
-        while (true){
-            try {
-                result = scan.nextInt();
-                scan.nextLine();
-                break;
-            }catch (Exception e){
-                scan.nextLine();
-                System.out.println("Digite um numero Inteiro;");
-            }
-        }
-        return result;
+        }while(opcao != 4);
     }
 }
