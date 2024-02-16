@@ -1,21 +1,43 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Filme {
     private Long id;
-    private Integer clasificacao;
     private String nome;
-    private ArrayList<Ator> atores;
-    private ArrayList<Diretor> diretores;
-    private String Descricao;
+    private String descricao;
     private Integer anoLancamento;
+    private Integer clasificacao;
+    private List<Ator> atores;
+    private List<Diretor> diretores;
     // private ArrayList<String> genero; futuramente eu implemento o genero
-    private Integer duracao;
 
     public Filme(){
         this.atores= new ArrayList<Ator>();
         this.diretores = new ArrayList<Diretor>();
+    }
+
+    public Filme(String nome,
+                 String descricao,
+                 Integer anoLancamento,
+                 Integer clasificacao,
+                 List<Ator> atores,
+                 List<Diretor> diretores){
+        this.nome = nome;
+        this.descricao = descricao;
+        this.anoLancamento = anoLancamento;
+        this.clasificacao = clasificacao;
+        this.atores = atores;
+        this.diretores = diretores;
+    }
+
+    public List<Ator> getAtores() {
+        return atores;
+    }
+
+    public List<Diretor> getDiretores() {
+        return diretores;
     }
 
     public Long getId() {
@@ -26,20 +48,12 @@ public class Filme {
         this.id = id;
     }
 
-    public Integer getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Integer duracao) {
-        this.duracao = duracao;
-    }
-
     public String getDescricao() {
-        return Descricao;
+        return descricao;
     }
 
     public void setDescricao(String descricao) {
-        Descricao = descricao;
+        this.descricao = descricao;
     }
 
     public Integer getAnoLancamento() {
@@ -64,5 +78,38 @@ public class Filme {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if (object == null)
+            return false;
+        if (object.getClass() == this.getClass()){
+            Filme n = (Filme) object;
+            if (this.nome == n.getNome())
+                if (this.anoLancamento == n.getAnoLancamento())
+                    return true;
+
+            return false;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString(){
+        String tostring = "Id: "+id+", Nome: "+nome+", classificação: "+clasificacao+", Descrição: "+descricao+", Ano Lançamento: "+anoLancamento+",\nDiretores: \n";
+        if (diretores == null)
+            tostring += "sem diretores\n";
+        for (Diretor d: diretores){
+            tostring += d.toString()+"\n";
+        }
+        tostring += "Atores: \n";
+        if (atores == null)
+            tostring += "Sem atores";
+        for (Ator a: atores){
+            tostring += a.toString()+"\n";
+        }
+        return tostring;
     }
 }
