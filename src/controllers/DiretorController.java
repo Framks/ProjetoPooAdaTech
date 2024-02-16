@@ -36,6 +36,13 @@ public class DiretorController {
         }
     }
 
+    public Diretor getDiretorExistente(Scanner scan){
+        listDiretor();
+        System.out.print("digite um id valido: ");
+        Long id = this.menu.receberLong(scan);
+        return this.diretorService.findById(id);
+    }
+
     public void linkDiretorFilme(Scanner scan){
 
     }
@@ -59,9 +66,6 @@ public class DiretorController {
                     break;
                 case 3:
                     linkDiretorFilme(scan);
-                    break;
-                case 4:
-
                     break;
                 default:
                     System.out.println("opção inválida");

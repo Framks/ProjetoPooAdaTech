@@ -1,16 +1,25 @@
 package controllers;
 import Menu.Menu;
+import Models.Ator;
+import Models.Diretor;
+import Models.Filme;
 import Services.FilmeService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FilmeController {
     private Menu menu;
     private FilmeService service;
+    private AtorController atorController;
+    private DiretorController diretorController;
 
     public FilmeController(){
         this.service = new FilmeService();
         this.menu = new Menu();
+        this.atorController = new AtorController();
+        this.diretorController = new DiretorController();
     }
 
     public void create(Scanner scan){
@@ -20,17 +29,72 @@ public class FilmeController {
         String descricao = scan.nextLine();
         System.out.print("Digite o ano de lançamento: ");
         Integer anoLancamento = this.menu.receberInteiro(scan);
-        System.out.print("Digite a duracao do filme");
+        System.out.print("Digite a classificação do filme: ");
+        Integer classificação = this.menu.receberInteiro(scan);
+        System.out.print("Se quiser criar um ator novo digite 1 se quiser adcionar um ator existente digite 2(não querendo digita 0):");
+        Integer opcao = this.menu.receberInteiro(scan);
+        List<Ator> atores = new ArrayList<>();
+        while (opcao != 0){
+            if (opcao == 1){
+                atores.add(this.atorController.createAtor(scan));
+            }else if(opcao == 2){
+                atores.add(this.atorController.getAtorExistente(scan));
+            }
+            System.out.print("digite a opção para continuar(1,2 ou 0): ");
+            opcao = this.menu.receberInteiro(scan);
+        }
+        System.out.print("Se quiser criar um Diretor novo digite 1 se quiser adcionar um ator existente digite 2(não querendo digita 0):");
+        opcao = this.menu.receberInteiro(scan);
+        List<Diretor> diretores = new ArrayList<>();
+        while (opcao != 0){
+            if (opcao == 1){
+                diretores.add(this.diretorController.createDiretor(scan));
+            }else if(opcao == 2){
+                diretores.add(this.diretorController.getDiretorExistente(scan));
+            }
+            System.out.print("digite a opção para continuar(1,2 ou 0): ");
+            opcao = this.menu.receberInteiro(scan);
+        }
 
+        Filme newFilme = new Filme(nome,descricao,anoLancamento,classificação,atores,diretores);
+        this.service.create(newFilme);
     }
 
     public void findByName(Scanner scan){
         System.out.print("digite o nome para busca: ");
+        String nome = scan.nextLine();
+        List<Filme> filme = this.service.findByName(nome);
+        if (filme == null)
+            System.out.println("filme não encontrado");
+        for (Filme f:filme){
+            System.out.println(f.toString());
+        }
+    }
+
+    public void delete(Scanner scan){
+        listFilms();
+        System.out.print("para deletar um filme temos que passar o id do filme: ");
+        Long id = this.menu.receberLong(scan);
+        if (this.service.delete(id)){
+            System.out.println("deletado com sucesso");
+        }else{
+            System.out.println("não deletado");
+        }
+    }
+
+    public void linkAtorFilme(){
+
+    }
+
+    public void linkDiretorFilme(){
 
     }
 
     private void listFilms(){
-
+        List<Filme> filmes = this.service.findAll();
+        for (Filme f: filmes){
+            System.out.println(f.toString());
+        }
     }
 
     public void run(Scanner scan){
@@ -46,11 +110,20 @@ public class FilmeController {
                     findByName(scan);
                     break;
                 case 3:
+                    linkAtorFilme();
+                    break;
+                case 4:
+                    linkDiretorFilme();
+                    break;
+                case 5:
                     create(scan);
+                    break;
+                case 6:
+                    delete(scan);
                     break;
                 default:
                     System.out.println("opção invalida;");
             }
-        }while (opcao != 4);
+        }while (opcao != 7);
     }
 }

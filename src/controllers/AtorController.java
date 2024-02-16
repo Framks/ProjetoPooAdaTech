@@ -39,9 +39,14 @@ public class AtorController {
         }
     }
 
-    public void linkAtorFilme(Scanner scan){
-
+    public Ator getAtorExistente(Scanner scan){
+        listAtor();
+        System.out.print("digite um id valido: ");
+        Long id = this.menu.receberLong(scan);
+        return this.atorService.findById(id);
     }
+
+
 
     public void run(Scanner scan){
         Integer opcao = 0;
@@ -61,7 +66,7 @@ public class AtorController {
                     }
                     break;
                 case 3:
-                    linkAtorFilme(scan);
+
                     break;
                 case 4:
 
