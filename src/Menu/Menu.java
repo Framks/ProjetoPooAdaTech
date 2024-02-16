@@ -77,7 +77,7 @@ public class Menu {
     }
 
     public Long receberLong(Scanner scan){
-        Long result = 0L;
+        Long result;
         while (true){
             try {
                 result = scan.nextLong();
