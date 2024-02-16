@@ -1,5 +1,6 @@
 package Db;
 
+import Models.Ator;
 import Models.Filme;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class FilmeDb {
         this.filmes = new ArrayList<>();
     }
 
-    public List<Filme> getFilmes() {
+    public List<Filme> findAll() {
         return filmes;
     }
 
@@ -25,12 +26,28 @@ public class FilmeDb {
         return null;
     }
 
-    public void addFilme(Filme filme){
+    public boolean addFilme(Filme filme){
+        if (contains(filme))
+            return false;
         this.filmes.add(filme);
+        return true;
     }
 
-    public void removeFilme(Long id){
+    public boolean removeFilme(Long id){
         Filme filme = this.findById(id);
+        if (filme == null)
+            return false;
         this.filmes.remove(filme);
+        return true;
     }
+
+    private boolean contains(Filme filme){
+        for (Filme f: this.filmes){
+            if (f.equals(filme)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
