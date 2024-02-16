@@ -20,7 +20,8 @@ public class Menu {
         System.out.println("1 - ver Atores");
         System.out.println("2 - cadastrar Ator");
         System.out.println("3 - vincular Ator à filme");
-        System.out.println("4 - exit");
+        System.out.println("4 - deletar");
+        System.out.println("5 - exit");
     }
 
     public void printMenuDiretor(){
@@ -28,7 +29,8 @@ public class Menu {
         System.out.println("1 - ver Diretores");
         System.out.println("2 - cadastrar Diretor");
         System.out.println("3 - vincular Diretor à filme");
-        System.out.println("4 - exit");
+        System.out.println("4 - deletar");
+        System.out.println("5 - exit");
     }
 
     public void printMenuFilme(){
@@ -38,7 +40,8 @@ public class Menu {
         System.out.println("3 - Adicionar Ator à filme");
         System.out.println("4 - Adicionar Diretor à filme");
         System.out.println("5 - cadastrar filme");
-        System.out.println("6 - exit");
+        System.out.println("6 - deletar");
+        System.out.println("7 - exit");
     }
 
     public Integer receberInteiro(Scanner scan){
@@ -71,5 +74,20 @@ public class Menu {
             System.out.println("error ao formatar data");
             return null;
         }
+    }
+
+    public Long receberLong(Scanner scan){
+        Long result = 0L;
+        while (true){
+            try {
+                result = scan.nextLong();
+                scan.nextLine();
+                break;
+            }catch (Exception e){
+                scan.nextLine();
+                System.out.println("Digite um numero de Id;");
+            }
+        }
+        return result;
     }
 }
