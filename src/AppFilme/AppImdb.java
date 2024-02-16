@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class AppImdb {
 
-    private Menu menu;
-    private Scanner scan;
-    private FilmeController filmeController;
-    private DiretorController diretorController;
-    private AtorController atorController;
+    private final Menu menu;
+    private final Scanner scan;
+    private final FilmeController filmeController;
+    private final DiretorController diretorController;
+    private final AtorController atorController;
     public AppImdb(){
         this.menu = new Menu();
         this.scan = new Scanner(System.in);
@@ -23,7 +23,7 @@ public class AppImdb {
     }
 
     public void run(){
-        Integer opcao = 0;
+        Integer opcao;
         do{
             this.menu.printMenuPrincipal();
             System.out.print("Digite a opção: ");
