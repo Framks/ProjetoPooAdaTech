@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FilmeController {
-    private Menu menu;
-    private FilmeService service;
-    private AtorController atorController;
-    private DiretorController diretorController;
+    private final Menu menu;
+    private final FilmeService service;
+    private final AtorController atorController;
+    private final DiretorController diretorController;
 
     public FilmeController(){
         this.service = new FilmeService();
@@ -30,7 +30,7 @@ public class FilmeController {
         System.out.print("Digite o ano de lançamento: ");
         Integer anoLancamento = this.menu.receberInteiro(scan);
         System.out.print("Digite a classificação do filme: ");
-        Integer classificação = this.menu.receberInteiro(scan);
+        Integer classificacao = this.menu.receberInteiro(scan);
         System.out.print("Se quiser criar um ator novo digite 1 se quiser adcionar um ator existente digite 2(não querendo digita 0):");
         Integer opcao = this.menu.receberInteiro(scan);
         List<Ator> atores = new ArrayList<>();
@@ -56,18 +56,21 @@ public class FilmeController {
             opcao = this.menu.receberInteiro(scan);
         }
 
-        Filme newFilme = new Filme(nome,descricao,anoLancamento,classificação,atores,diretores);
+        Filme newFilme = new Filme(nome,descricao,anoLancamento,classificacao,atores,diretores);
         this.service.create(newFilme);
     }
 
     public void findByName(Scanner scan){
         System.out.print("digite o nome para busca: ");
         String nome = scan.nextLine();
-        List<Filme> filme = this.service.findByName(nome);
-        if (filme == null)
-            System.out.println("filme não encontrado");
-        for (Filme f:filme){
-            System.out.println(f.toString());
+        List<Filme> filmes = this.service.findByName(nome);
+        if (filmes != null) {
+            for (Filme f: filmes){
+                System.out.println(f.toString());
+            }
+        }else{
+                System.out.println("filme não encontrado");
+
         }
     }
 
@@ -82,12 +85,20 @@ public class FilmeController {
         }
     }
 
-    public void linkAtorFilme(){
-
+    public void linkAtorFilme(Scanner scan){
+        listFilms();
+        System.out.print("Digite o id do filme para adcioinar um ator: ");
+        Long idfilme = this.menu.receberLong(scan);
+        Ator ator = this.atorController.getAtorExistente(scan);
+        this.service.addAtorFilme(idfilme,ator);
     }
 
-    public void linkDiretorFilme(){
-
+    public void linkDiretorFilme(Scanner scan){
+        listFilms();
+        System.out.print("Digite o id do filme para adcioinar um Diretor: ");
+        Long idfilme = this.menu.receberLong(scan);
+        Diretor diretor = this.diretorController.getDiretorExistente(scan);
+        this.service.addDiretorFilme(idfilme,diretor);
     }
 
     private void listFilms(){
@@ -98,7 +109,7 @@ public class FilmeController {
     }
 
     public void run(Scanner scan){
-        Integer opcao = 0;
+        Integer opcao;
         do {
             this.menu.printMenuFilme();
             opcao = this.menu.receberInteiro(scan);
@@ -110,10 +121,10 @@ public class FilmeController {
                     findByName(scan);
                     break;
                 case 3:
-                    linkAtorFilme();
+                    linkAtorFilme(scan);
                     break;
                 case 4:
-                    linkDiretorFilme();
+                    linkDiretorFilme(scan);
                     break;
                 case 5:
                     create(scan);
@@ -126,4 +137,5 @@ public class FilmeController {
             }
         }while (opcao != 7);
     }
+
 }

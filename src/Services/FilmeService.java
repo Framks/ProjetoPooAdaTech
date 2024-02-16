@@ -45,6 +45,16 @@ public class FilmeService {
         return this.filmeRepository.findAll();
     }
 
+    public void addAtorFilme(Long idFilme, Ator ator){
+        Filme filme = findById(idFilme);
+        filme.addAtor(ator);
+    }
+
+    public void addDiretorFilme(Long id, Diretor diretor){
+        Filme filme = findById(id);
+        filme.addDiretor(diretor);
+    }
+
     public List<Ator> findAtorById_filme(Long id){
         Filme filme = this.filmeRepository.findById(id);
         return filme.getAtores();

@@ -80,6 +80,14 @@ public class Filme {
         this.nome = nome;
     }
 
+    public void addAtor(Ator ator){
+        this.atores.add(ator);
+    }
+
+    public void addDiretor(Diretor diretor){
+        this.diretores.add(diretor);
+    }
+
     @Override
     public boolean equals(Object object){
         if (object == null)
