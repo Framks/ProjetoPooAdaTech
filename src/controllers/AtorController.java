@@ -4,20 +4,18 @@ import Menu.Menu;
 import Models.Ator;
 import Services.AtorService;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 public class AtorController {
-    public AtorService atorService;
-
     private final Menu menu;
-    //private AtorService atorService;
+    private final AtorService atorService;
+    private final FilmeController filmeController;
 
     public AtorController(){
         this.menu = new Menu();
         this.atorService = new AtorService();
+        this.filmeController = new FilmeController();
     }
     public Ator createAtor(Scanner scan){
         System.out.println("vamos criar um ator:");
@@ -46,7 +44,15 @@ public class AtorController {
         return this.atorService.findById(id);
     }
 
+    public void linkAtorFilme(Scanner scan){
+        this.filmeController.linkAtorFilme(scan);
+    }
 
+    public boolean delete(Scanner scan){
+        listAtor();
+        System.out.print("digite o id do Ator: ");
+        return this.atorService.delete(this.menu.receberLong(scan));
+    }
 
     public void run(Scanner scan){
         Integer opcao = 0;
@@ -66,15 +72,19 @@ public class AtorController {
                     }
                     break;
                 case 3:
-
+                    linkAtorFilme(scan);
                     break;
                 case 4:
-
+                    if (delete(scan)){
+                        System.out.println("deletado com sucesso");
+                    }else{
+                        System.out.println("não deletado");
+                    }
                     break;
                 default:
                     System.out.println("opção inválida");
             }
-        }while(opcao != 4);
+        }while(opcao != 5);
     }
 
 }
