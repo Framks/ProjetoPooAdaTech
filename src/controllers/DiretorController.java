@@ -1,7 +1,6 @@
 package controllers;
 
 import Menu.Menu;
-import Models.Ator;
 import Models.Diretor;
 import Services.DiretorService;
 
@@ -9,11 +8,13 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class DiretorController {
-    private Menu menu;
-    private DiretorService diretorService;
+    private final Menu menu;
+    private final DiretorService diretorService;
+    private final FilmeController filmeController;
     public DiretorController(){
         this.menu = new Menu();
         this.diretorService = new DiretorService();
+        this.filmeController = new FilmeController();
     }
 
     public Diretor createDiretor(Scanner scan){
@@ -27,6 +28,12 @@ public class DiretorController {
         }else{
             return null;
         }
+    }
+
+    public boolean delete(Scanner scan){
+        listDiretor();
+        System.out.print("digite o id para deletar: ");
+        return this.diretorService.delete(this.menu.receberLong(scan));
     }
 
     public void listDiretor(){
@@ -44,13 +51,13 @@ public class DiretorController {
     }
 
     public void linkDiretorFilme(Scanner scan){
-
+        this.filmeController.linkDiretorFilme(scan);
     }
 
     public void run(Scanner scan){
-        Integer opcao = 0;
+        Integer opcao;
         do {
-            this.menu.printMenuAtor();
+            this.menu.printMenuDiretor();
             opcao = this.menu.receberInteiro(scan);
             switch (opcao){
                 case 1:
@@ -67,9 +74,16 @@ public class DiretorController {
                 case 3:
                     linkDiretorFilme(scan);
                     break;
+                case 4:
+                    if (delete(scan)){
+                        System.out.println("Deletado com sucesso");
+                    }else{
+                        System.out.println("naõ deletado");
+                    }
+                    break;
                 default:
                     System.out.println("opção inválida");
             }
-        }while(opcao != 4);
+        }while(opcao != 5);
     }
 }
