@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FilmeController {
-    private final Menu menu;
-    private final FilmeService service;
-    private final AtorController atorController;
-    private final DiretorController diretorController;
+    private Menu menu;
+    private FilmeService service;
+    private AtorController atorController;
+    private DiretorController diretorController;
 
     public FilmeController(){
         this.service = new FilmeService();

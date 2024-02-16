@@ -2,20 +2,23 @@ package controllers;
 
 import Menu.Menu;
 import Models.Ator;
+import Models.Filme;
 import Services.AtorService;
+import Services.FilmeService;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class AtorController {
-    private final Menu menu;
-    private final AtorService atorService;
-    private final FilmeController filmeController;
+    private Menu menu;
+    private AtorService atorService;
+    private FilmeService filmeService;
 
     public AtorController(){
         this.menu = new Menu();
         this.atorService = new AtorService();
-        this.filmeController = new FilmeController();
+        this.filmeService = new FilmeService();
     }
     public Ator createAtor(Scanner scan){
         System.out.println("vamos criar um ator:");
@@ -45,7 +48,15 @@ public class AtorController {
     }
 
     public void linkAtorFilme(Scanner scan){
-        this.filmeController.linkAtorFilme(scan);
+        List<Filme> filmes = this.filmeService.findAll();
+        for (Filme f: filmes){
+            System.out.println(f.toString());
+        }
+        System.out.print("digite o id do filme: ");
+        Long idfilme = this.menu.receberLong(scan);
+        listAtor();
+        System.out.print("digite o id do ator: ");
+        this.filmeService.addAtorFilme(idfilme, this.getAtorExistente(scan));
     }
 
     public boolean delete(Scanner scan){

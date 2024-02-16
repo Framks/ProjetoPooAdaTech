@@ -2,19 +2,22 @@ package controllers;
 
 import Menu.Menu;
 import Models.Diretor;
+import Models.Filme;
 import Services.DiretorService;
+import Services.FilmeService;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class DiretorController {
-    private final Menu menu;
-    private final DiretorService diretorService;
-    private final FilmeController filmeController;
+    private Menu menu;
+    private DiretorService diretorService;
+    private FilmeService filmeService;
     public DiretorController(){
         this.menu = new Menu();
         this.diretorService = new DiretorService();
-        this.filmeController = new FilmeController();
+        this.filmeService = new FilmeService();
     }
 
     public Diretor createDiretor(Scanner scan){
@@ -51,7 +54,15 @@ public class DiretorController {
     }
 
     public void linkDiretorFilme(Scanner scan){
-        this.filmeController.linkDiretorFilme(scan);
+        List<Filme> filmes = this.filmeService.findAll();
+        for (Filme f: filmes){
+            System.out.println(f.toString());
+        }
+        System.out.print("digite o id do filme: ");
+        Long idfilme = this.menu.receberLong(scan);
+        listDiretor();
+        System.out.print("digite o id do Diretor: ");
+        this.filmeService.addDiretorFilme(idfilme, this.getDiretorExistente(scan));
     }
 
     public void run(Scanner scan){
@@ -78,7 +89,7 @@ public class DiretorController {
                     if (delete(scan)){
                         System.out.println("Deletado com sucesso");
                     }else{
-                        System.out.println("naõ deletado");
+                        System.out.println("não deletado");
                     }
                     break;
                 default:

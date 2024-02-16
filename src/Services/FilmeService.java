@@ -14,7 +14,7 @@ public class FilmeService {
 
     public FilmeService(){
         filmeRepository = new FilmeRepository();
-        proximoId = 0L;
+        proximoId = Long.valueOf(0);
     }
 
     public boolean create(Filme filme){
