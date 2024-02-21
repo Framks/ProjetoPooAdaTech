@@ -46,4 +46,12 @@ public class DiretorRepository extends AbstraticRepository {
         }
         throw new RuntimeException("sem Diretor com esse id");
     }
+
+    @Override
+    public void gravar(Object o){
+        Diretor diretor = (Diretor) o;
+        if (diretor != null)
+            diretor.setId(this.bancoDeDados.getProximoId());
+        this.bancoDeDados.inserirObjeto(diretor);
+    }
 }

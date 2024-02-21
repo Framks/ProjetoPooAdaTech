@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public abstract class AbstraticRepository {
-    private BancoDados bancoDeDados;
+    protected BancoDados bancoDeDados;
 
     public AbstraticRepository(BancoDados bancoDeDados){
         this.bancoDeDados = bancoDeDados;

@@ -45,4 +45,12 @@ public class AtorRepository extends AbstraticRepository {
         }
         throw new RuntimeException("sem ator com esse id");
     }
+
+    @Override
+    public void gravar(Object o){
+        Ator ator = (Ator) o;
+        if (ator != null)
+            ator.setId(this.bancoDeDados.getProximoId());
+        this.bancoDeDados.inserirObjeto(ator);
+    }
 }

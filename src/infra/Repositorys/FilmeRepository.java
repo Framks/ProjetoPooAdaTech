@@ -73,4 +73,12 @@ public class FilmeRepository extends AbstraticRepository{
         return filmesEcontrados;
     }
 
+    @Override
+    public void gravar(Object o){
+        Filme filme = (Filme) o;
+        if (filme != null)
+            filme.setId(this.bancoDeDados.getProximoId());
+        this.bancoDeDados.inserirObjeto(filme);
+    }
+
 }
