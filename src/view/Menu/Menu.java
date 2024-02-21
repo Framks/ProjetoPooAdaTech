@@ -1,4 +1,4 @@
-package Menu;
+package view.Menu;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,25 +12,23 @@ public class Menu {
         System.out.println("1 - Ator");
         System.out.println("2 - Diretor");
         System.out.println("3 - Filme");
-        System.out.println("4 - exit");
+        System.out.println("0 - exit");
     }
 
     public void printMenuAtor(){
         System.out.println("### Ator ###");
         System.out.println("1 - ver Atores");
         System.out.println("2 - cadastrar Ator");
-        System.out.println("3 - vincular Ator à filme");
-        System.out.println("4 - deletar");
-        System.out.println("5 - exit");
+        System.out.println("3 - procurar filmes por Ator");
+        System.out.println("0 - exit");
     }
 
     public void printMenuDiretor(){
         System.out.println("### Diretor ###");
         System.out.println("1 - ver Diretores");
         System.out.println("2 - cadastrar Diretor");
-        System.out.println("3 - vincular Diretor à filme");
-        System.out.println("4 - deletar");
-        System.out.println("5 - exit");
+        System.out.println("3 - procurar filmes por diretor");
+        System.out.println("0 - exit");
     }
 
     public void printMenuFilme(){
@@ -40,8 +38,7 @@ public class Menu {
         System.out.println("3 - Adicionar Ator à filme");
         System.out.println("4 - Adicionar Diretor à filme");
         System.out.println("5 - cadastrar filme");
-        System.out.println("6 - deletar");
-        System.out.println("7 - exit");
+        System.out.println("0 - exit");
     }
 
     public Integer receberInteiro(Scanner scan){
