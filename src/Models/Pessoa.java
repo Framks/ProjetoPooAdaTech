@@ -8,10 +8,9 @@ public class Pessoa {
     private Date dataNascimento;
     private Long id;
 
-    public Pessoa(Long id, String nome, Date dataNascimento){
+    public Pessoa( String nome, Date dataNascimento){
         this.dataNascimento = dataNascimento;
         this.nome = nome;
-        this.id = id;
     }
 
     public Date getDataNascimento() {
@@ -56,5 +55,8 @@ public class Pessoa {
     public String toString(){
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return "Id: "+this.id+", Nome: "+this.nome+", Data de Nascimento: "+ formato.format(this.dataNascimento);
+    }
+
+    public void setId(Long proximoId) {
     }
 }

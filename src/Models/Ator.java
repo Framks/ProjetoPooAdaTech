@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Ator extends Pessoa {
 
-    public Ator(Long id,String nome, Date dataNascimento){
-        super(id, nome,dataNascimento);
+    public Ator(String nome, Date dataNascimento){
+        super( nome,dataNascimento);
     }
 
 
