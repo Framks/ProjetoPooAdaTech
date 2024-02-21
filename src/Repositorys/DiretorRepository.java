@@ -1,30 +1,17 @@
 package Repositorys;
 
-import Db.DiretorDb;
+import Db.BancoDados;
 import Models.Diretor;
 
 import java.util.List;
 
-public class DiretorRepository {
-    final private DiretorDb diretorDb;
-
-    public DiretorRepository(){
-        this.diretorDb = new DiretorDb();
+public class DiretorRepository extends AbstraticRepository {
+    public DiretorRepository(BancoDados bancoDados){
+        super(bancoDados);
     }
 
-    public boolean create(Diretor diretor){
-        return this.diretorDb.add(diretor);
-    }
-
-    public boolean delete(Long id){
-        return this.diretorDb.remove(id);
-    }
-
-    public Diretor findById(Long id){
-        return this.diretorDb.findById(id);
-    }
-
-    public List<Diretor> findAll(){
-        return this.diretorDb.findAll();
+    @Override
+    protected Class classeModelo(){
+        return Diretor.class;
     }
 }
