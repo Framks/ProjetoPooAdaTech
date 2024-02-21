@@ -1,46 +1,58 @@
 package Services;
 
 import Models.Ator;
-import Repositorys.AtorRepository;
+import infra.Repositorys.AtorRepository;
+import infra.Repositorys.FilmeRepository;
 
-import java.util.Date;
 import java.util.List;
 
 public class AtorService {
     final private AtorRepository atorRepository;
-    private Long proximoId;
+    final private FilmeRepository filmeRepository;
 
-    public AtorService(){
-        this.atorRepository = new AtorRepository();
-        this.proximoId = 0L;
+    public AtorService(AtorRepository atorRepository, FilmeRepository filmeRepository){
+        this.atorRepository = atorRepository;
+        this.filmeRepository = filmeRepository;
     }
 
-    public Ator findById(Long id){
-        return this.atorRepository.findById(id);
+    public Ator findByID(Long id){
+        if (id == null)
+            throw new RuntimeException("Id nullo");
+        return (Ator) this.atorRepository.buscarPorId(id);
     }
-
     public Ator findByNome(String nome){
-        List<Ator> atores = findAll();
-        for (Ator ator: atores){
-            if(ator.getNome().equals(nome)){
-                return ator;
-            }
-        }
-        return null;
+        if (nome != null)
+            return this.atorRepository.procurarPorNome(nome);
+        throw new RuntimeException("nome nullo");
     }
 
-    public boolean create(String nome, Date dataNascimento){
-        Ator newAtor = new Ator(proximoId, nome,dataNascimento);
-        proximoId++;
-        return this.atorRepository.create(newAtor);
+    public void create(Ator newAtor){
+        if (newAtor == null)
+            throw new RuntimeException("nome nulo");
+        if (newAtor.getNome() == null)
+            throw new RuntimeException("data nula");
+        this.atorRepository.gravar(newAtor);
     }
 
     public boolean delete(Long id){
-        return this.atorRepository.delete(id);
+        if (id == null)
+            throw new RuntimeException("Id nulo");
+        Ator ator = (Ator) this.atorRepository.buscarPorId(id);
+        return this.atorRepository.excluir(ator);
     }
 
-    public List<Ator> findAll(){
-        return this.atorRepository.findAll();
+    public List findAll(){
+        return this.atorRepository.listar();
+    }
+
+    public List procurarFilmesDeAtor(Long id){
+        if (id == null)
+            throw new RuntimeException("Id nulo");
+        Ator ator = (Ator) this.atorRepository.buscarPorId(id);
+        if (ator == null)
+            throw new RuntimeException("Ator não encontrado");
+        List filmes = this.filmeRepository.procurarPorAtor(ator);
+        return filmes;
     }
 
 }
