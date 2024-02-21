@@ -1,6 +1,6 @@
-package Repositorys;
+package infra.Repositorys;
 
-import Db.BancoDados;
+import infra.Db.BancoDados;
 
 import java.util.Collections;
 import java.util.List;
