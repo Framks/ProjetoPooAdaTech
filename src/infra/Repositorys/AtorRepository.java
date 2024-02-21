@@ -38,21 +38,6 @@ public class AtorRepository extends AbstraticRepository {
         throw new RuntimeException("ator não encontrado");
     }
 
-    public Ator procurarPorId(Long id){
-        if (id == null)
-            throw new RuntimeException("Faltanto numero de Codigo:");
-        List atores = listar();
-        if (atores.isEmpty())
-            throw new RuntimeException("sem atores");
-        for (Object o: atores){
-            Ator ator = (Ator) o;
-            if (ator.getId()==id){
-                return ator;
-            }
-        }
-        throw new RuntimeException("sem ator com esse id");
-    }
-
     @Override
     public void gravar(Object o){
         Ator ator = (Ator) o;
