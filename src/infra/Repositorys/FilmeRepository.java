@@ -25,35 +25,20 @@ public class FilmeRepository extends AbstraticRepository{
         return Filme.class;
     }
 
-    public Diretor procurarPorNome(String nome){
+    public List procurarPorNome(String nome){
         if (nome == null)
             throw new RuntimeException("Nome nullo");
-        List diretores = listar();
-        if (diretores.isEmpty())
+        List filmes = listar();
+        if (filmes.isEmpty())
             throw new RuntimeException("sem Diretores");
-
-        for (Object o: diretores){
-            Diretor diretor = (Diretor) o;
-            if (diretor.getNome().equalsIgnoreCase(nome)){
-                return diretor;
+        List filmesacados = null;
+        for (Object o: filmes){
+            Filme filme = (Filme) o;
+            if (filme.getNome().contains(nome)){
+                filmesacados.add(filme);
             }
         }
-        throw new RuntimeException("Diretor não encontrado");
-    }
-
-    public Diretor procurarPorId(Long id){
-        if (id == null)
-            throw new RuntimeException("Faltanto numero de Codigo:");
-        List atores = listar();
-        if (atores.isEmpty())
-            throw new RuntimeException("sem Diretores");
-        for (Object o: atores){
-            Diretor diretor = (Diretor) o;
-            if (diretor.getId()==id){
-                return diretor;
-            }
-        }
-        throw new RuntimeException("sem Diretor com esse id");
+        return filmesacados;
     }
 
     public List procurarPorDiretor(Diretor diretor){
