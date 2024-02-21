@@ -7,10 +7,17 @@ import Models.Filme;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FilmeRepository extends AbstraticRepository{
     public FilmeRepository(BancoDados bancoDados){
         super(bancoDados);
+    }
+
+    @Override
+    protected Boolean filtrarPorId(Object o, Long id) {
+        Filme filme = (Filme) o;
+        return Objects.equals(filme.getId(),id);
     }
 
     @Override

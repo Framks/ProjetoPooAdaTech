@@ -4,10 +4,17 @@ import infra.Db.BancoDados;
 import Models.Ator;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AtorRepository extends AbstraticRepository {
     public AtorRepository(BancoDados bancoDados){
         super(bancoDados);
+    }
+
+    @Override
+    protected Boolean filtrarPorId(Object o,Long id) {
+        Ator ator = (Ator) o;
+        return Objects.equals(ator.getId(), id);
     }
 
     @Override

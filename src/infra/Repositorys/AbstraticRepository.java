@@ -16,6 +16,19 @@ public abstract class AbstraticRepository {
         this.bancoDeDados.inserirObjeto(objeto);
     }
 
+    protected abstract Boolean filtrarPorId(Object o, Long id);
+
+    public Object buscarPorId(Long id){
+        List objetos = listar();
+        Object encontrado = null;
+        for (Object o : objetos){
+            if (filtrarPorId(o, id)){
+                encontrado = o;
+            }
+        }
+        return encontrado;
+    }
+
     public List listar() {
         List objetosPresentesNoBanco = this.bancoDeDados.buscarObjetosPorTipo(classeModelo());
         return Collections.unmodifiableList(objetosPresentesNoBanco);
