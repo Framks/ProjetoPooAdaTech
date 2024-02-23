@@ -31,7 +31,7 @@ public class FilmeRepository extends AbstraticRepository{
         List filmes = listar();
         if (filmes.isEmpty())
             throw new RuntimeException("sem Diretores");
-        List filmesacados = null;
+        List filmesacados = new ArrayList();
         for (Object o: filmes){
             Filme filme = (Filme) o;
             if (filme.getNome().contains(nome)){
@@ -58,7 +58,7 @@ public class FilmeRepository extends AbstraticRepository{
         List filmesEcontrados = new ArrayList();
         for (Object o : filmes){
             Filme filme = (Filme) o;
-            if (ator != null && filme != null && filme.getDiretores().contains(ator)){
+            if (ator != null && filme != null && filme.getAtores().contains(ator)){
                 filmesEcontrados.add(filme);
             }
         }
