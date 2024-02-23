@@ -1,6 +1,7 @@
 package Services;
 
 import Models.Ator;
+import Services.exceptionSevices.ActorException;
 import infra.Repositorys.AtorRepository;
 import infra.Repositorys.FilmeRepository;
 
@@ -17,26 +18,26 @@ public class AtorService {
 
     public Ator findByID(Long id){
         if (id == null)
-            throw new RuntimeException("Id nullo");
+            throw new ActorException("Id nullo");
         return (Ator) this.atorRepository.buscarPorId(id);
     }
     public Ator findByNome(String nome){
         if (nome != null)
             return this.atorRepository.procurarPorNome(nome);
-        throw new RuntimeException("nome nullo");
+        throw new ActorException("nome nullo");
     }
 
     public void create(Ator newAtor){
         if (newAtor == null)
-            throw new RuntimeException("nome nulo");
+            throw new ActorException("nome nulo");
         if (newAtor.getNome() == null)
-            throw new RuntimeException("data nula");
+            throw new ActorException("data nula");
         this.atorRepository.gravar(newAtor);
     }
 
     public boolean delete(Long id){
         if (id == null)
-            throw new RuntimeException("Id nulo");
+            throw new ActorException("Id nulo");
         Ator ator = (Ator) this.atorRepository.buscarPorId(id);
         return this.atorRepository.excluir(ator);
     }
@@ -47,10 +48,10 @@ public class AtorService {
 
     public List procurarFilmesDeAtor(Long id){
         if (id == null)
-            throw new RuntimeException("Id nulo");
+            throw new ActorException("Id nulo");
         Ator ator = (Ator) this.atorRepository.buscarPorId(id);
         if (ator == null)
-            throw new RuntimeException("Ator não encontrado");
+            throw new ActorException("Ator não encontrado");
         List filmes = this.filmeRepository.procurarPorAtor(ator);
         return filmes;
     }

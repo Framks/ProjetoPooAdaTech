@@ -1,6 +1,7 @@
 package Services;
 
 import Models.Diretor;
+import Services.exceptionSevices.DirectorException;
 import infra.Repositorys.DiretorRepository;
 import infra.Repositorys.FilmeRepository;
 
@@ -17,11 +18,13 @@ public class DiretorService {
 
     public Diretor findById(Long id){
         if (id == null)
-            throw new RuntimeException("Error Id nulo");
+            throw new DirectorException.DirectorNotFoundException();
         return (Diretor) this.diretorRepository.buscarPorId(id);
     }
 
     public Diretor findByNome(String nome){
+        if (nome == null)
+            throw new DirectorException("Error ao buscar diretor sem nome");
         List<Diretor> diretores = findAll();
         for (Diretor diretor: diretores){
             if(diretor.getNome().equalsIgnoreCase(nome)){
@@ -33,19 +36,19 @@ public class DiretorService {
 
     public void create(Diretor newDiretor){
         if (newDiretor.getNome() == null)
-            throw new RuntimeException("Error ao cadastrar diretor sem nome");
+            throw new DirectorException("Error ao cadastrar diretor sem nome");
         if (newDiretor.getDataNascimento() == null)
-            throw new RuntimeException("Error ao cadastrar diretor sem data de nascimento");
+            throw new DirectorException("Error ao cadastrar diretor sem data de nascimento");
         this.diretorRepository.gravar(newDiretor);
     }
 
     public boolean delete(Long id){
         if (id == null){
-            throw new RuntimeException("id nulo ");
+            throw new DirectorException("id nulo ");
         }
         Diretor diretor = (Diretor) this.diretorRepository.buscarPorId(id);
         if (diretor == null)
-            throw new RuntimeException("Diretor de id "+id+" não encontrado");
+            throw new DirectorException("Diretor de id "+id+" não encontrado");
         return this.diretorRepository.excluir(diretor);
     }
 
@@ -55,11 +58,11 @@ public class DiretorService {
 
     public List procurarFilmesDeDiretor(Long id){
         if (id == null){
-            throw new RuntimeException("Id nulo");
+            throw new DirectorException("Id nulo");
         }
         Diretor diretor = (Diretor) this.diretorRepository.buscarPorId(id);
         if (diretor == null)
-            throw new RuntimeException("diretor inexistente");
+            throw new DirectorException("diretor inexistente");
         return this.filmeRepository.procurarPorDiretor(diretor);
     }
 }
