@@ -4,7 +4,7 @@ import java.util.*;
 
 public class BancoDados {
     private static final Map OBJETOS = new HashMap();
-    private Long id = 0L;
+    private Long id = 1L;
 
     public void inserirObjeto(Object objeto) {
         Set objetos = colecaoDeObjetos(objeto.getClass());

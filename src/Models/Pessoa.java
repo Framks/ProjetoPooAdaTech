@@ -58,5 +58,6 @@ public class Pessoa {
     }
 
     public void setId(Long proximoId) {
+        this.id = proximoId;
     }
 }
