@@ -143,66 +143,6 @@ public class FilmeMenu {
         }
         return diretores;
     }
-     private List<Ator> atores() {
-         List<Ator> listAtores = new ArrayList<>(10);
-
-         Integer opt;
-         do {
-             opt = this.menu.receberInteiro(scanner);
-             System.out.print(PrintaMenu.OPCAO_EDIT_ATOR.get());
-
-             if (opt == 1) {
-                 System.out.println("digite o nome do ator: ");
-                 String nome = scanner.nextLine();
-                 System.out.println("Vamos criar a data de nascimento: ");
-                 Date datanascimento = this.menu.receberData(scanner);
-
-                 Ator ator = new Ator(nome, datanascimento);
-                 this.atorService.create(ator);
-                 listAtores.add(ator);
-
-             } else if (opt == 2) {
-                 System.out.println(AtorMenu.getlistar(this.atorService.findAll()));
-                 System.out.print("selecione o ID do ator: ");
-                 Long id = this.menu.receberLong(scanner);
-                 listAtores.add(this.atorService.findByID(id));
-
-             } else {
-                 System.out.println("opção inválida");
-             }
-         } while (opt != 0);
-         return listAtores;
-     }
-
-    private List<Diretor> diretores() {
-        List<Diretor> listDiretores = new ArrayList<>();
-
-        Integer opt;
-        do {
-            opt = this.menu.receberInteiro(scanner);
-            System.out.print(PrintaMenu.OPCAO_EDIT_DIRETOR.get());
-
-            if (opt == 1) {
-                System.out.println("Digite o nome do diretor: ");
-                String nome = scanner.nextLine();
-                System.out.println("Vamos criar a data de nascimento: ");
-                Date dataNascimento = this.menu.receberData(scanner);
-
-                Diretor diretor = new Diretor(nome, dataNascimento);
-                this.diretorService.create(diretor);
-                listDiretores.add(diretor);
-            } else if (opt == 2) {
-                System.out.println(DiretorMenu.getlistarDiretores(this.diretorService.findAll()));
-                System.out.print("Selecione o ID do diretor: ");
-                Long id = this.menu.receberLong(scanner);
-                listDiretores.add(this.diretorService.findById(id));
-            } else if (opt != 0) {
-                System.out.println("Opção inválida");
-            }
-        } while (opt != 0);
-
-        return listDiretores;
-    }
 
     private void procurarPorNome(){
         System.out.print("Digite o nome para a busca: ");

@@ -72,11 +72,6 @@ public class DiretorMenu {
         return stringBuilder.toString();
     }
 
-    private String listarDiretoresMaria() {
-        return DiretorMenu.getlistarDiretores(this.service.findAll());
-    }
-
-
     private String listar(){
             List genericos = this.service.findAll();
 

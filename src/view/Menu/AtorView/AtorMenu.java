@@ -75,10 +75,6 @@ public class AtorMenu {
             System.out.println(ator.toString());
         }
     }
-    private String listarELissa(){
-        return AtorMenu.getlistar(this.service.findAll());
-    }
-
     private void listarFilmesAtor(){
             listar();
         //System.out.println(listar());
@@ -90,7 +86,6 @@ public class AtorMenu {
             System.out.println(f.toString());
         }
     }
-
     private void procurarPorNome(){
         System.out.println("digite o nome para fazer a busca");
         String nome = scanner.nextLine();
