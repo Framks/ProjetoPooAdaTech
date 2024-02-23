@@ -34,24 +34,6 @@ public class Pessoa {
     }
 
     @Override
-    public boolean equals(Object ator){
-        if (ator.getClass() == this.getClass()){
-            Ator newator = (Ator) ator;
-            if (newator.getNome().equals(this.getNome())){
-                if (newator.getDataNascimento() == this.getDataNascimento()){
-                    return true;
-                }else{
-                    return false;
-                }
-            }else{
-                return false;
-            }
-        }else {
-            return false;
-        }
-    }
-
-    @Override
     public String toString(){
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return "Id: "+this.id+", Nome: "+this.nome+", Data de Nascimento: "+ formato.format(this.dataNascimento);

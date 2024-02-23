@@ -99,12 +99,12 @@ public class DiretorMenu {
             System.out.println(stringBuilder);
         }
 
-        private void procurarPorNome(){
-            System.out.println("digite o nome para fazer a busca");
-            String nome = scanner.nextLine();
-            Diretor diretor = this.service.findByNome(nome);
-            System.out.println(diretor);
-        }
+    private void procurarPorNome(){
+        System.out.println("digite o nome para fazer a busca");
+        String nome = scanner.nextLine();
+        Diretor diretor = this.service.findByNome(nome);
+        System.out.println(diretor);
+    }
 }
 
 
