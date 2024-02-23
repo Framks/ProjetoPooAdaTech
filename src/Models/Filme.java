@@ -11,7 +11,6 @@ public class Filme {
     private Integer clasificacao;
     private List<Ator> atores;
     private List<Diretor> diretores;
-    // private ArrayList<String> genero; futuramente eu implemento o genero
 
     public Filme(){
         this.atores= new ArrayList<Ator>();
