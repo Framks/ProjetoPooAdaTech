@@ -6,41 +6,6 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Menu {
-
-    public void printMenuPrincipal(){
-        System.out.println("#### Projeto Filmes #####");
-        System.out.println("1 - Ator");
-        System.out.println("2 - Diretor");
-        System.out.println("3 - Filme");
-        System.out.println("0 - exit");
-    }
-
-    public void printMenuAtor(){
-        System.out.println("### Ator ###");
-        System.out.println("1 - ver Atores");
-        System.out.println("2 - cadastrar Ator");
-        System.out.println("3 - procurar filmes por Ator");
-        System.out.println("0 - exit");
-    }
-
-    public void printMenuDiretor(){
-        System.out.println("### Diretor ###");
-        System.out.println("1 - ver Diretores");
-        System.out.println("2 - cadastrar Diretor");
-        System.out.println("3 - procurar filmes por diretor");
-        System.out.println("0 - exit");
-    }
-
-    public void printMenuFilme(){
-        System.out.println("### Filme ###");
-        System.out.println("1 - ver filmes");
-        System.out.println("2 - buscar por nome");
-        System.out.println("3 - Adicionar Ator à filme");
-        System.out.println("4 - Adicionar Diretor à filme");
-        System.out.println("5 - cadastrar filme");
-        System.out.println("0 - exit");
-    }
-
     public Integer receberInteiro(Scanner scan){
         Integer result = 0;
         while (true){
