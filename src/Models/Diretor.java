@@ -1,6 +1,7 @@
 package Models;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Diretor  extends Pessoa {
 
@@ -12,12 +13,8 @@ public class Diretor  extends Pessoa {
     public boolean equals(Object o){
         if (o.getClass() == this.getClass()){
             Diretor newator = (Diretor) o;
-            if (newator.getNome().equals(this.getNome())){
-                if (newator.getDataNascimento() == this.getDataNascimento()){
-                    return true;
-                }else{
-                    return false;
-                }
+            if (Objects.equals(this.getId(),newator.getId())){
+                return true;
             }else{
                 return false;
             }
